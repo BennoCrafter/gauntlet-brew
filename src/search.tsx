@@ -151,7 +151,7 @@ export default function SearchListView(): ReactElement {
       }
     >
       <List.SearchBar
-        placeholder={"Search something..."}
+        placeholder={"Search formulae or casks..."}
         value={searchText}
         onChange={setSearchText}
       />
