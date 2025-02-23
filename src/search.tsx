@@ -146,7 +146,7 @@ export default function SearchListView(): ReactElement {
       isLoading={isLoading}
       actions={
         <ActionPanel>
-          <Action label="Run action" onAction={onClick} />
+          <Action label="Show Details" onAction={onClick} />
         </ActionPanel>
       }
     >
