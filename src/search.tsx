@@ -15,6 +15,11 @@ import {
   useNavigation,
   usePluginPreferences,
 } from "@project-gauntlet/api/hooks";
+import {
+  useCachedPromise,
+  useFetch,
+  usePromise,
+} from "@project-gauntlet/api/hooks";
 
 function FormulaDetailView(formula: Formula): ReactElement {
   const { popView } = useNavigation();
@@ -75,41 +80,19 @@ export default function SearchListView(): ReactElement {
   const { pushView } = useNavigation();
   const [formulae, setFormulae] = useState<Formula[]>([]);
   const [casks, setCasks] = useState<Cask[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [formulaePage, setFormulaePage] = useState<number>(0);
   const [casksPage, setCasksPage] = useState<number>(0);
   const formulaePageSize = 50;
   const casksPageSize = 50;
 
-  useEffect(() => {
-    let isMounted = true;
-    async function loadData() {
-      console.log("Fetching data...");
-      const formulaeData = await fetchFormulae(
-        "https://formulae.brew.sh/api/formula.json",
-      );
-      const caskData = await fetchCask(
-        "https://formulae.brew.sh/api/cask.json",
-      );
-      if (isMounted) {
-        setFormulae(formulaeData);
-        setCasks(caskData);
-        setIsLoading(false);
-        console.log("Data fetching complete.");
-      }
-    }
-    loadData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  const { data, error, isLoading } = useFetch<Formula[]>(
+    "https://formulae.brew.sh/api/formula.json",
+  );
 
   const onClick = (id: string | undefined) => {
     console.log("onClick " + id);
     if (!id) return;
 
-    const pck = getPackageByID(id);
     const formula = getForumlaByID(id);
     if (formula) {
       pushView(<FormulaDetailView {...formula} />);
