@@ -1,14 +1,34 @@
 [gauntlet]
-name = 'Template Plugin'
+name = 'Brew'
 description = """
-Template Plugin Description
+Manage brew formulae
 """
 
 [[entrypoint]]
-id = 'template-view'
-name = 'Template view'
-path = 'src/template-view.tsx'
+id = 'search'
+name = 'Search'
+path = 'src/search.tsx'
 type = 'view'
 description = """
-Template Plugin Entrypoint Description
+Search brew packages
 """
+
+
+[[supported_system]]
+os = 'linux'
+
+[[supported_system]]
+os = 'macos'
+
+[[supported_system]]
+os = 'windows'
+
+[permissions]
+environment = ["RUST_LOG", "LD_LIBRARY_PATH"]
+system = ["systemMemoryInfo"]
+network = ["formulae.brew.sh"]
+clipboard = ["read", "write", "clear"]
+main_search_bar = ["read"]
+
+[permissions.exec]
+command = ["brew"]
