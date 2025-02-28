@@ -1,0 +1,39 @@
+[gauntlet]
+name = 'Brew'
+description = """
+Manage brew formulae
+"""
+
+[[entrypoint]]
+id = 'search'
+name = 'Search'
+path = 'src/search.tsx'
+icon = "icon.png"
+type = 'view'
+description = """
+Search brew packages
+"""
+
+
+[[supported_system]]
+os = 'linux'
+
+[[supported_system]]
+os = 'macos'
+
+[[supported_system]]
+os = 'windows'
+
+[permissions]
+environment = ["RUST_LOG", "LD_LIBRARY_PATH"]
+system = ["systemMemoryInfo"]
+network = ["formulae.brew.sh"]
+clipboard = ["read", "write", "clear"]
+main_search_bar = ["read"]
+
+[permissions.exec]
+command = ["brew"]
+
+[permissions.filesystem]
+read = ["{common:plugin-cache}"]
+write = ["{common:plugin-cache}"]
