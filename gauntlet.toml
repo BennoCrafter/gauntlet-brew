@@ -33,3 +33,7 @@ main_search_bar = ["read"]
 
 [permissions.exec]
 command = ["brew"]
+
+[permissions.filesystem]
+read = ["{common:plugin-cache}"]
+write = ["{common:plugin-cache}"]
