@@ -14,9 +14,12 @@ description = """
 Search brew packages
 """
 
-
-[[supported_system]]
-os = 'linux'
+[[entrypoint]]
+id = "plugin-store"
+name = "Plugin Store"
+path = "src/plugin-store.tsx"
+type = "view"
+description = "Browse and install plugins"
 
 [[supported_system]]
 os = 'macos'
@@ -27,7 +30,7 @@ os = 'windows'
 [permissions]
 environment = ["RUST_LOG", "LD_LIBRARY_PATH"]
 system = ["systemMemoryInfo"]
-network = ["formulae.brew.sh"]
+network = ["formulae.brew.sh", "raw.githubusercontent.com", "github.com"]
 clipboard = ["read", "write", "clear"]
 main_search_bar = ["read"]
 

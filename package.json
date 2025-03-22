@@ -1,5 +1,5 @@
 {
-  "name": "plugin-template",
+  "name": "gauntlet-brew",
   "scripts": {
     "publish": "gauntlet publish",
     "build": "gauntlet build",
