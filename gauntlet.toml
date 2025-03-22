@@ -1,3 +1,5 @@
+# "$schema" = "https://raw.githubusercontent.com/BennoCrafter/gauntlet/refs/heads/manifest-schema/rust/manifest_schema/schema.json"
+
 [gauntlet]
 name = 'Brew'
 description = """
@@ -14,25 +16,18 @@ description = """
 Search brew packages
 """
 
-
-[[supported_system]]
-os = 'linux'
-
 [[supported_system]]
 os = 'macos'
-
-[[supported_system]]
-os = 'windows'
 
 [permissions]
 environment = ["RUST_LOG", "LD_LIBRARY_PATH"]
 system = ["systemMemoryInfo"]
 network = ["formulae.brew.sh"]
-clipboard = ["read", "write", "clear"]
 main_search_bar = ["read"]
 
 [permissions.exec]
-command = ["brew"]
+command = ["brew", "sh"]
+executable = ["/opt/homebrew/bin/brew"]
 
 [permissions.filesystem]
 read = ["{common:plugin-cache}"]
