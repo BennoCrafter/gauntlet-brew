@@ -403,6 +403,9 @@ function FormulaDetailView(props: {
           {isInstalled && isOutdated && (
             <Action label="Upgrade Formula" onAction={handleUpgrade} />
           )}
+          {isInstalled && !isOutdated && (
+            <Action label="Check for Updates" onAction={handleUpgrade} />
+          )}
           {isInstalled && (
             <Action label="Uninstall Formula" onAction={handleUninstall} />
           )}
